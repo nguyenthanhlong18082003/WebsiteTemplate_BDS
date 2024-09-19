@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="preview_product_template">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <!-- Thêm iframe dùng cho Preview vào trong Sheet Product Form -->
+                <xpath expr="//sheet[@name='product_form']" position="inside">
+                    <div class="shadow-lg" id="preview_product_view" invisible="not show_preview">
+                        <div class="d-flex mt-2" >
+                            <button string="Refresh" type="object" name="refesh_iframe" />
+                            <div class="form-check form-switch h-100 mx-2 d-flex justify-content-center align-items-center">
+                                <button class="oe_stat_button d-flex align-items-center" type="object" name="toggle_publish">
+                                    <field class="ms-3 mt-1" name="website_published" widget="boolean_button" field_id="website_published" options="{'terminology': {'string_true': 'Published', 'string_false': 'Not Published'}}"/>
+                                    <label for="website_published" string="Publish"/>
+                                </button>
+                            </div>
+                            <button class="oe_stat_button btn btn-secondary-outline" type="object" name="change_view_mode" context="{'id': id}">
+                                <field class="ms-1 mt-1" name="mobile_view" widget="boolean_button" field_id="mobile_view" options="{'terminology': {'string_true': 'Is Mobile View', 'string_false': 'Not Mobile View'}}"/>
+                                <label for="mobile_view"/>
+                            </button>
+                            <button class="btn btn-secondary-outline ms-auto" type="object" name="toggle_preview" string="&#10006;" context="{'id': id}"></button>
+                        </div>
+                        <div id="website_preview_container">
+                            <field name="website_preview_url"/>
+                        </div>
+                    </div>
+                </xpath>
+                <!-- 
+                    - Thêm Button bên cạnh button Print Labels để toggle phần product Preview
+                -->
+                <xpath expr="//header">
+                    <button class="btn btn-secondary" string="Preview" type="object" name="toggle_preview" context="{'id': id}" invisible="0"></button>
+                </xpath>
+
+                <xpath expr="//div[@name='options']" position="inside">
+                    <span class="d-inline-block" invisible="1">
+                        <field name="show_preview" field_id="show_preview"/>
+                        <label for="show_preview"/>
+                    </span>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

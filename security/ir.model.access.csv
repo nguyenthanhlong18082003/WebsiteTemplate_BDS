@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_table_block_description_4,Access Product Table Block Description,model_product_table_block_description,sales_team.group_sale_salesman,1,1,1,1
+access_product_table_block_image_model_4,Access product_table_block_image_model,model_product_table_block_image_model,sales_team.group_sale_salesman,1,1,1,1
